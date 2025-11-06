@@ -1,0 +1,332 @@
+/* HOME PAGE STYLES */
+body.home-page {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* LOGIN PAGE STYLES - Centered layout */
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    height: 10vh;
+    background-color: rgb(14, 114, 191) !important;
+}
+
+.nav-link {
+    font-weight: 600 !important;
+    color: white !important;
+    font-size: 20px;
+    padding-right: 20px !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 28px;
+    margin-left: 20px;
+}
+
+.d-block {
+    height: 90vh;
+    object-fit: cover;
+    filter: brightness(30%);
+}
+
+.carousel-caption {
+    margin-bottom: 16rem;
+}
+
+.carousel-caption h5 {
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+}
+
+.carousel-caption p {
+    color: whitesmoke;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.carousel-caption span {
+    color: rgb(26, 69, 198) !important;
+}
+
+.carousel-caption a {
+    margin-left: 2rem;
+    width: 8rem !important;
+}
+
+.active-link {
+    color: gold !important;
+    text-decoration: solid;
+    transition: all 0.3s ease-in-out;
+}
+
+.click-effect {
+    transform: scale(0.9);
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+/* ============================================ */
+/* LOGIN PAGE STYLES */
+/* ============================================ */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.login-container {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 380px;
+    margin: 100px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h2 {
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2d3748;
+    font-size: 28px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Avatar Styles with Icons */
+.avatar {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: visible;
+}
+
+/* Admin Icon - Shield */
+.admin-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 5px 20px rgba(240, 147, 251, 0.4);
+}
+
+.admin-icon::before {
+    content: "🛡️";
+    font-size: 45px;
+}
+
+/* Candidate Icon - User Graduate */
+.candidate-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+}
+
+.candidate-icon::before {
+    content: "🎓";
+    font-size: 45px;
+}
+
+/* Company Icon - Building */
+.company-icon {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    box-shadow: 0 5px 20px rgba(67, 233, 123, 0.4);
+}
+
+.company-icon::before {
+    content: "🏢";
+    font-size: 45px;
+}
+
+.avatar img {
+    display: none; /* Hide old img tags */
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #f7fafc;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.input-container:focus-within {
+    background: #fff;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    background: none;
+    flex: 1;
+    font-size: 15px;
+    color: #2d3748;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-container input::placeholder {
+    color: #a0aec0;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.forgot-password {
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+.create-account {
+    margin-top: 12px;
+}
+
+.create-account a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.create-account a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+.back-link {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.back-link a {
+    color: #718096;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #2d3748;
+}
+
+.error-messages {
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: shake 0.5s ease;
+}
+
+.success-messages {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error {
+    color: #c53030;
+    margin: 5px 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.success {
+    color: #166534;
+    margin: 5px 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 30px 25px;
+        margin: 50px auto;
+    }
+    
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .admin-icon::before,
+    .candidate-icon::before,
+    .company-icon::before {
+        font-size: 40px;
+    }
+}
