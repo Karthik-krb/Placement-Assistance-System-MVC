@@ -14,6 +14,325 @@ body.login-page {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
+/* Admin Login - Professional dark theme */
+body.admin-login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Add subtle transparent overlay for admin theme */
+body.admin-login-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 0;
+}
+
+body.admin-login-page .login-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(255, 255, 255, 0.1);
+}
+
+body.admin-login-page .login-container:hover {
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 15px 50px rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Admin icon - Elegant white/light gradient */
+body.admin-login-page .admin-icon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.admin-login-page h2 {
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.admin-login-page .input-container {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+body.admin-login-page .input-container input {
+    color: #ffffff;
+}
+
+body.admin-login-page .input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.admin-login-page .input-container:focus-within {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+body.admin-login-page .login-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+body.admin-login-page .login-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.3) 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+body.admin-login-page .forgot-password a,
+body.admin-login-page .create-account a {
+    color: #ffffff;
+}
+
+body.admin-login-page .forgot-password a:hover,
+body.admin-login-page .create-account a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.admin-login-page .back-link a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.admin-login-page .back-link a:hover {
+    color: #ffffff;
+}
+
+/* Admin login error and success messages with transparent theme */
+body.admin-login-page .error-messages {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.admin-login-page .error {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+body.admin-login-page .success-messages {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.admin-login-page .success {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Candidate Login - Background Image */
+body.candidate-login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background-image: url('/PAS/public/assets/candidate-reg-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Add light blue overlay to match illustration */
+body.candidate-login-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(224, 242, 254, 0.88) 0%, rgba(186, 230, 253, 0.88) 100%);
+    z-index: 0;
+}
+
+body.candidate-login-page .login-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 25px 70px rgba(59, 130, 246, 0.4);
+}
+
+body.candidate-login-page .login-container:hover {
+    box-shadow: 0 30px 80px rgba(59, 130, 246, 0.5);
+}
+
+/* Candidate specific styling to match blue illustration */
+body.candidate-login-page .candidate-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+}
+
+body.candidate-login-page h2 {
+    color: #1e40af;
+    font-weight: 700;
+}
+
+body.candidate-login-page .input-container {
+    background: #f0f9ff;
+    border: 2px solid transparent;
+}
+
+body.candidate-login-page .input-container:focus-within {
+    background: #fff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+body.candidate-login-page .login-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
+}
+
+body.candidate-login-page .login-btn:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+body.candidate-login-page .forgot-password a,
+body.candidate-login-page .create-account a {
+    color: #3b82f6;
+}
+
+body.candidate-login-page .forgot-password a:hover,
+body.candidate-login-page .create-account a:hover {
+    color: #2563eb;
+}
+
+body.candidate-login-page .back-link a {
+    color: #64748b;
+}
+
+body.candidate-login-page .back-link a:hover {
+    color: #1e40af;
+}
+
+/* Company Login - Background Image */
+body.company-login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background-image: url('/PAS/public/assets/4565.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Add modern overlay to complement the background */
+body.company-login-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.75) 0%, rgba(17, 24, 39, 0.65) 100%);
+    z-index: 0;
+}
+
+body.company-login-page .login-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(30, 58, 138, 0.2);
+}
+
+body.company-login-page .login-container:hover {
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 15px 50px rgba(30, 58, 138, 0.25);
+}
+
+/* Company specific styling - Professional blue/dark theme for business */
+body.company-login-page .company-icon {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.5);
+}
+
+body.company-login-page h2 {
+    color: #1e3a8a;
+    font-weight: 700;
+}
+
+body.company-login-page .input-container {
+    background: #f0f9ff;
+    border: 2px solid transparent;
+}
+
+body.company-login-page .input-container:focus-within {
+    background: #fff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+body.company-login-page .login-btn {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
+}
+
+body.company-login-page .login-btn:hover {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.5);
+    transform: translateY(-2px);
+}
+
+body.company-login-page .forgot-password a,
+body.company-login-page .create-account a {
+    color: #3b82f6;
+}
+
+body.company-login-page .forgot-password a:hover,
+body.company-login-page .create-account a:hover {
+    color: #1e40af;
+}
+
+body.company-login-page .back-link a {
+    color: #6b7280;
+}
+
+body.company-login-page .back-link a:hover {
+    color: #1e3a8a;
+}
+
 .navbar {
     height: 10vh;
     background-color: rgb(14, 114, 191) !important;
@@ -136,26 +455,58 @@ body.login-page {
 .candidate-icon {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .candidate-icon::before {
-    content: "🎓";
-    font-size: 45px;
+    display: none; /* Hide emoji for candidate */
+}
+
+.candidate-icon img {
+    display: block !important;
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 1;
 }
 
 /* Company Icon - Building */
 .company-icon {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    box-shadow: 0 5px 20px rgba(67, 233, 123, 0.4);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
 .company-icon::before {
-    content: "🏢";
+    content: "";
     font-size: 45px;
 }
 
 .avatar img {
     display: none; /* Hide old img tags */
+}
+
+/* Override for company icon - show the image */
+body.company-login-page .avatar.company-icon {
+    background: transparent;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+}
+
+body.company-login-page .avatar.company-icon img {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Override for candidate icon - show the image */
+body.candidate-login-page .avatar.candidate-icon img {
+    display: block !important;
 }
 
 .input-container {

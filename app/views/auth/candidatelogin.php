@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidate Login</title>
-    <link rel="stylesheet" href="/PAS/public/css/styles.css?v=3">
+    <link rel="stylesheet" href="/PAS/public/css/styles.css?v=9">
 </head>
-<body class="login-page">
+<body class="candidate-login-page">
 <div class="login-container">
     <div class="avatar candidate-icon">
+        <img src="/PAS/public/assets/account_circle_70dp_E8EAED_FILL0_wght400_GRAD0_opsz48.png" alt="User Icon">
     </div>
     <h2>Candidate Login</h2>
 

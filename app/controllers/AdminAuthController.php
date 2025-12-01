@@ -1,5 +1,5 @@
 <?php
-// app/Controllers/AdminAuthController.php
+
 class AdminAuthController {
     private $pdo;
 
@@ -17,7 +17,7 @@ class AdminAuthController {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        // simple validation
+        
         $errors = [];
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Enter a valid email.";
         if (strlen($password) < 3) $errors[] = "Enter a password.";
@@ -29,10 +29,10 @@ class AdminAuthController {
         $adminModel = new Admin($this->pdo);
         $user = $adminModel->authenticate($email, $password);
         if ($user) {
-            // login success
+            
             $_SESSION['user'] = $user;
             $_SESSION['role'] = 'admin';
-            header('Location: /admin/dashboard.php'); // change to your admin dashboard route
+            header('Location: /PAS/public/admin/dashboard');
             exit;
         }
         $errors[] = "Invalid credentials.";

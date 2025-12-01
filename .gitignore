@@ -12,9 +12,13 @@ Thumbs.db
 # Config files with sensitive data (uncomment if needed)
 # config/config.php
 
-# Uploaded files (resumes)
+# Uploaded files
 public/uploads/resumes/*
 !public/uploads/resumes/.gitkeep
+public/uploads/photos/*
+!public/uploads/photos/.gitkeep
+public/uploads/logos/*
+!public/uploads/logos/.gitkeep
 
 # Log files
 *.log

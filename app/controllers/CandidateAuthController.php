@@ -1,5 +1,4 @@
 <?php
-// app/Controllers/CandidateAuthController.php
 class CandidateAuthController {
     private $pdo;
     private $config;
@@ -33,7 +32,7 @@ class CandidateAuthController {
             header('Location: /PAS/public/candidate/dashboard');
             exit;
         }
-        $errors[] = "Invalid credentials.";
+        $errors[] = "Invalid Email or password.";
         return $this->showLogin($errors, ['email' => $email]);
     }
 
@@ -47,20 +46,47 @@ class CandidateAuthController {
             return $this->showRegister();
         }
 
-        // Get form data
         $c_name = trim($_POST['c_name'] ?? '');
         $c_email = trim($_POST['c_email'] ?? '');
         $c_password = $_POST['c_password'] ?? '';
         $c_cgpa = $_POST['c_cgpa'] ?? '';
         $c_skills = isset($_POST['c_skills']) ? implode(", ", $_POST['c_skills']) : '';
 
-        // Validation
+        $c_phone = trim($_POST['c_phone'] ?? '');
+        $c_age = !empty($_POST['c_age']) ? (int)$_POST['c_age'] : null;
+        $c_sex = !empty($_POST['c_sex']) ? $_POST['c_sex'] : null;
+        $c_address = trim($_POST['c_address'] ?? '');
+
+        $c_college = trim($_POST['c_college'] ?? '');
+        $c_university = trim($_POST['c_university'] ?? '');
+        $c_department = trim($_POST['c_department'] ?? '');
+        $c_course_start_year = !empty($_POST['c_course_start_year']) ? (int)$_POST['c_course_start_year'] : null;
+        $c_course_end_year = !empty($_POST['c_course_end_year']) ? (int)$_POST['c_course_end_year'] : null;
+        $c_current_semester = !empty($_POST['c_current_semester']) ? (int)$_POST['c_current_semester'] : null;
+        $c_supply_no = !empty($_POST['c_supply_no']) ? (int)$_POST['c_supply_no'] : 0;
+
+        $c_linkedin = trim($_POST['c_linkedin'] ?? '');
+        $c_github = trim($_POST['c_github'] ?? '');
+
         $errors = [];
         $old = [
             'c_name' => $c_name,
             'c_email' => $c_email,
             'c_cgpa' => $c_cgpa,
-            'c_skills' => $_POST['c_skills'] ?? []
+            'c_skills' => $_POST['c_skills'] ?? [],
+            'c_phone' => $c_phone,
+            'c_age' => $c_age,
+            'c_sex' => $c_sex,
+            'c_address' => $c_address,
+            'c_college' => $c_college,
+            'c_university' => $c_university,
+            'c_department' => $c_department,
+            'c_course_start_year' => $c_course_start_year,
+            'c_course_end_year' => $c_course_end_year,
+            'c_current_semester' => $c_current_semester,
+            'c_supply_no' => $c_supply_no,
+            'c_linkedin' => $c_linkedin,
+            'c_github' => $c_github
         ];
 
         if (empty($c_name)) $errors[] = "Name is required.";
@@ -69,7 +95,27 @@ class CandidateAuthController {
         if (empty($c_cgpa) || $c_cgpa < 0 || $c_cgpa > 10) $errors[] = "Valid CGPA (0-10) is required.";
         if (empty($c_skills)) $errors[] = "Please select at least one skill.";
 
-        // File validation
+        if (!empty($c_phone) && !preg_match('/^[0-9]{10}$/', $c_phone)) {
+            $errors[] = "Phone number must be exactly 10 digits.";
+        }
+        if ($c_age !== null && ($c_age < 17 || $c_age > 100)) {
+            $errors[] = "Age must be between 17 and 100.";
+        }
+        if (!empty($c_linkedin) && !filter_var($c_linkedin, FILTER_VALIDATE_URL)) {
+            $errors[] = "LinkedIn profile must be a valid URL.";
+        }
+        if (!empty($c_github) && !filter_var($c_github, FILTER_VALIDATE_URL)) {
+            $errors[] = "GitHub profile must be a valid URL.";
+        }
+        if ($c_course_start_year !== null && $c_course_end_year !== null) {
+            if ($c_course_start_year >= $c_course_end_year) {
+                $errors[] = "Course end year must be after start year.";
+            }
+        }
+        if ($c_supply_no < 0 || $c_supply_no > 20) {
+            $errors[] = "Number of supplies must be between 0 and 20.";
+        }
+
         if (!isset($_FILES['c_resume']) || $_FILES['c_resume']['error'] !== UPLOAD_ERR_OK) {
             $errors[] = "Resume file is required.";
         } else {
@@ -79,48 +125,89 @@ class CandidateAuthController {
             }
         }
 
+        $photo_uploaded = false;
+        if (isset($_FILES['c_photo']) && $_FILES['c_photo']['error'] === UPLOAD_ERR_OK) {
+            $allowed_types = ['jpg', 'jpeg', 'png'];
+            $photo_type = strtolower(pathinfo($_FILES["c_photo"]["name"], PATHINFO_EXTENSION));
+            
+            if (!in_array($photo_type, $allowed_types)) {
+                $errors[] = "Only JPG, JPEG, and PNG files are allowed for photo.";
+            }
+            
+            if ($_FILES['c_photo']['size'] > 2 * 1024 * 1024) {
+                $errors[] = "Photo size must not exceed 2MB.";
+            } else {
+                $photo_uploaded = true;
+            }
+        }
+
         if ($errors) {
             return $this->showRegister($errors, $old);
         }
 
-        // Hash password
         $hashed_password = password_hash($c_password, PASSWORD_DEFAULT);
 
-        // Handle file upload
-        $upload_dir = __DIR__ . '/../../public/uploads/resumes/';
+        $upload_dir = '/Applications/XAMPP/xamppfiles/htdocs/PAS/public/uploads/resumes/';
         if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
+            mkdir($upload_dir, 0777, true);
         }
 
-        $file_name = uniqid() . '_' . basename($_FILES["c_resume"]["name"]);
-        $target_file = $upload_dir . $file_name;
+        $resume_name = uniqid() . '_' . basename($_FILES["c_resume"]["name"]);
+        $resume_target = $upload_dir . $resume_name;
 
-        if (!move_uploaded_file($_FILES["c_resume"]["tmp_name"], $target_file)) {
-            $errors[] = "File upload failed. Please check folder permissions.";
+        if (!move_uploaded_file($_FILES["c_resume"]["tmp_name"], $resume_target)) {
+            $errors[] = "Resume upload failed. Please check folder permissions.";
             return $this->showRegister($errors, $old);
         }
 
-        // Save to database
-        $resume_path = "/PAS/public/uploads/resumes/" . $file_name;
+        $resume_path = "/PAS/public/uploads/resumes/" . $resume_name;
+
+        $photo_path = null;
+        if ($photo_uploaded) {
+            $photo_dir = '/Applications/XAMPP/xamppfiles/htdocs/PAS/public/uploads/photos/';
+            if (!is_dir($photo_dir)) {
+                mkdir($photo_dir, 0777, true);
+            }
+
+            $photo_name = uniqid() . '_' . basename($_FILES["c_photo"]["name"]);
+            $photo_target = $photo_dir . $photo_name;
+
+            if (move_uploaded_file($_FILES["c_photo"]["tmp_name"], $photo_target)) {
+                $photo_path = "/PAS/public/uploads/photos/" . $photo_name;
+            }
+        }
 
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO candidate (name, email, password, cgpa, skills, resume) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$c_name, $c_email, $hashed_password, $c_cgpa, $c_skills, $resume_path]);
+            $stmt = $this->pdo->prepare("
+                INSERT INTO candidate (
+                    c_name, c_email, c_password, c_cgpa, c_skills, c_resume,
+                    c_photo, c_phone, c_age, c_sex, c_address,
+                    c_college, c_university, c_department, 
+                    c_course_start_year, c_course_end_year, c_current_semester, c_supply_no,
+                    c_linkedin, c_github
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            
+            $stmt->execute([
+                $c_name, $c_email, $hashed_password, $c_cgpa, $c_skills, $resume_path,
+                $photo_path, $c_phone, $c_age, $c_sex, $c_address,
+                $c_college, $c_university, $c_department,
+                $c_course_start_year, $c_course_end_year, $c_current_semester, $c_supply_no,
+                $c_linkedin, $c_github
+            ]);
 
-            // Success - redirect to login
             $_SESSION['success_message'] = "Registration successful! Please login.";
             header('Location: /PAS/public/auth/candidate/login');
             exit;
 
         } catch (PDOException $e) {
-            if ($e->getCode() == 23000) { // Duplicate entry
+            if (file_exists($resume_target)) unlink($resume_target);
+            if ($photo_path && file_exists($photo_target)) unlink($photo_target);
+
+            if ($e->getCode() == 23000) {
                 $errors[] = "Email already exists. Please use a different email.";
             } else {
                 $errors[] = "Registration failed. Please try again.";
-            }
-            // Delete uploaded file if DB insert fails
-            if (file_exists($target_file)) {
-                unlink($target_file);
             }
             return $this->showRegister($errors, $old);
         }

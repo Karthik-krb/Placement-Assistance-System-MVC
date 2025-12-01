@@ -1,0 +1,289 @@
+/* Candidate Dashboard Styles */
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.navbar {
+    height: 10vh;
+    background-color: rgb(26, 69, 198) !important;
+}
+
+.nav-link {
+    font-weight: 600 !important;
+    color: white !important;
+    font-size: 20px;
+    padding-right: 20px !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #e0e0e0 !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 28px;
+    margin-left: 20px;
+    color: white !important;
+}
+
+.content .container-fluid {
+    height: auto;
+    width: 100vw !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #56a7d6, #005baa);
+}
+
+.card-body p {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Job Postings Page Styles */
+.table {
+    margin-top: 20px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+/* Application Status Styles */
+.shortlisted {
+    color: green;
+    font-weight: bold;
+}
+
+.rejected {
+    color: red;
+    font-weight: bold;
+}
+
+.pending {
+    color: #856404;
+    font-weight: bold;
+}
+
+/* ===== DASHBOARD SPECIFIC STYLES ===== */
+
+/* Dashboard Page Background */
+body.dashboard-page {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    min-height: 100vh;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, rgb(26, 69, 198) 0%, rgb(41, 98, 255) 100%);
+    color: white;
+    padding: 1rem 1rem;
+    border-radius: 25px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 24px rgba(26, 69, 198, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-banner::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.welcome-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-banner h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-banner p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin: 0;
+}
+
+.welcome-banner p.fs-4 {
+    font-size: 2.5rem !important;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+/* Profile Card */
+.profile-card {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.profile-header {
+    background: linear-gradient(135deg, rgb(26, 69, 198) 0%, rgb(41, 98, 255) 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid rgb(26, 69, 198);
+    box-shadow: 0 4px 12px rgba(26, 69, 198, 0.2);
+}
+
+.profile-placeholder {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, rgb(26, 69, 198) 0%, rgb(41, 98, 255) 100%);
+    color: white;
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 5px solid rgb(26, 69, 198);
+    box-shadow: 0 4px 12px rgba(26, 69, 198, 0.2);
+    font-weight: 600;
+    margin: 0 auto;
+}
+
+.section-title {
+    color: rgb(26, 69, 198);
+    font-weight: 700;
+    border-bottom: 3px solid rgb(26, 69, 198);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.social-btn {
+    border-radius: 12px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn {
+    background: white;
+    color: rgb(26, 69, 198);
+    border: 2px solid white;
+    border-radius: 12px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.custom-toast {
+    min-width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.toast-header {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    border-radius: 15px 15px 0 0;
+}
+
+.toast-body {
+    font-size: 1rem;
+    padding: 1rem;
+}

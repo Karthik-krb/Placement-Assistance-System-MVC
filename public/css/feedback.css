@@ -1,0 +1,213 @@
+/* Feedback System Styling */
+
+/* Feedback List Container */
+.feedback-list {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Individual Feedback Item */
+.feedback-item {
+    padding: 15px;
+    border-left: 3px solid #0d6efd;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.feedback-item:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Feedback Message */
+.feedback-message {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border-left: 3px solid #6c757d;
+}
+
+/* Admin Reply Box */
+.admin-reply {
+    margin-top: 10px;
+}
+
+.admin-reply .alert {
+    border-left: 4px solid #0dcaf0;
+}
+
+/* Feedback Preview in Table */
+.feedback-preview {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Status Badges */
+.badge {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+}
+
+/* Empty State */
+.text-muted i {
+    opacity: 0.3;
+}
+
+/* Form Styling */
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Cards */
+.card {
+    border: none;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+/* Statistics Cards */
+.card.bg-info,
+.card.bg-warning,
+.card.bg-success {
+    background: linear-gradient(135deg, var(--bs-info) 0%, var(--bs-info-rgb) 100%);
+}
+
+.card.bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%) !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+/* Modal Styling */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Table Responsive */
+.table {
+    font-size: 0.9rem;
+}
+
+.table thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Button Group */
+.btn-group .btn {
+    padding: 10px 20px;
+}
+
+/* Scrollbar Styling */
+.feedback-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.feedback-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.feedback-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.feedback-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feedback-list {
+        max-height: 400px;
+    }
+    
+    .feedback-preview {
+        max-width: 150px;
+    }
+    
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+}
+
+/* Animation for new items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feedback-item {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 8px;
+    border-left-width: 4px;
+}
+
+.alert-success {
+    border-left-color: #28a745;
+}
+
+.alert-danger {
+    border-left-color: #dc3545;
+}
+
+.alert-info {
+    border-left-color: #0dcaf0;
+}
+
+/* Form Text */
+.form-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Navigation Active Link */
+.nav-link.active {
+    font-weight: bold;
+}
+
+/* Badge on Navbar */
+.nav-link .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    margin-left: 5px;
+}

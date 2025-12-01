@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Login</title>
-    <link rel="stylesheet" href="/PAS/public/css/styles.css?v=3">
+    <link rel="stylesheet" href="/PAS/public/css/styles.css?v=8">
 </head>
-<body class="login-page">
+<body class="company-login-page">
     <div class="login-container">
         <div class="avatar company-icon">
+            <img src="/PAS/public/assets/cmpy.jpeg" alt="Company Icon">
         </div>
         <h2>Company Login</h2>
         
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="success-messages">
+                <p class="success"><?= htmlspecialchars($_SESSION['success_message']) ?></p>
+            </div>
+            <?php unset($_SESSION['success_message']); ?>
+        <?php endif; ?>
+
         <?php if (!empty($errors ?? [])): ?>
             <div class="error-messages">
                 <?php foreach ($errors as $error): ?>

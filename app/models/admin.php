@@ -1,5 +1,4 @@
 <?php
-// app/Models/Admin.php
 class Admin {
     private $pdo;
 
@@ -7,21 +6,19 @@ class Admin {
         $this->pdo = $pdo;
     }
 
-    /**
-     * Authenticate admin by email and password.
-     * Returns admin row (assoc) on success, false on failure.
-     */
     public function authenticate(string $email, string $password) {
-        $sql = "SELECT id, name, email, password FROM admin WHERE email = :email LIMIT 1";
+        $sql = "SELECT admin_id, admin_name, admin_email, admin_password FROM admin WHERE admin_email = :email LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$row) return false;
 
-        if (isset($row['password']) && password_verify($password, $row['password'])) {
-            // remove password before returning
-            unset($row['password']);
-            return $row;
+        if (isset($row['admin_password']) && password_verify($password, $row['admin_password'])) {
+            return [
+                'id' => $row['admin_id'],
+                'name' => $row['admin_name'],
+                'email' => $row['admin_email']
+            ];
         }
         return false;
     }

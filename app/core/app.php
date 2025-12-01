@@ -1,15 +1,8 @@
 <?php
-// app/core/App.php
+
 declare(strict_types=1);
 
-/**
- * Small application dispatcher / router.
- * - Uses $config['basePath'] if available to strip a base folder from the request URI.
- * - Dispatches a few hard-coded routes (home + 3 auth routes).
- * - Falls back to a controller/method convention: /controller/method/param1/param2
- *
- * Usage: new App($config); $app->run();
- */
+
 class App
 {
     private array $config;
@@ -26,19 +19,17 @@ class App
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
-        // Remove basePath if set (e.g., '/PAS/public')
         if ($this->basePath !== '' && str_starts_with($uri, $this->basePath)) {
             $uri = substr($uri, strlen($this->basePath));
             if ($uri === '') $uri = '/';
         }
 
-        // normalize trailing slash
         $path = rtrim($uri, '/');
         if ($path === '') $path = '/';
 
-        // ROUTES: adjust these if you want different URIs
+       
         $routes = [
-            // home
+            
             ['GET', '/', 'HomeController@index'],
 
             // auth forms and submissions
@@ -52,9 +43,51 @@ class App
 
             ['GET',  '/auth/company/login',    'CompanyAuthController@showLogin'],
             ['POST', '/auth/company/login',    'CompanyAuthController@login'],
+            ['GET',  '/auth/company/register', 'CompanyAuthController@showRegister'],
+            ['POST', '/auth/company/register', 'CompanyAuthController@register'],
+
+            // Admin Dashboard routes
+            ['GET',  '/admin',                   'AdminDashboardController@index'], // Redirect /admin to dashboard
+            ['GET',  '/admin/dashboard',         'AdminDashboardController@index'],
+            ['GET',  '/admin/candidates',        'AdminDashboardController@showCandidates'],
+            ['GET',  '/admin/applications',      'AdminDashboardController@showApplications'],
+            ['GET',  '/admin/companies',         'AdminDashboardController@showCompanies'],
+            ['GET',  '/admin/shortlisted',       'AdminDashboardController@showShortlisted'],
+            ['GET',  '/admin/feedback',          'AdminDashboardController@feedback'],
+            ['POST', '/admin/feedback',          'AdminDashboardController@feedback'],
+            ['GET',  '/admin/logout',            'AdminDashboardController@logout'],
+
+            
+            ['GET',  '/candidate',               'CandidateDashboardController@index'], 
+            ['GET',  '/candidate/dashboard',     'CandidateDashboardController@index'],
+            ['GET',  '/candidate/job-postings',  'CandidateDashboardController@jobPostings'],
+            ['POST', '/candidate/job-postings',  'CandidateDashboardController@jobPostings'],
+            ['GET',  '/candidate/applications',  'CandidateDashboardController@checkApplications'],
+            ['GET',  '/candidate/edit-profile',  'CandidateDashboardController@showEditProfile'],
+            ['POST', '/candidate/edit-profile',  'CandidateDashboardController@updateProfile'],
+            ['GET',  '/candidate/feedback',      'CandidateDashboardController@feedback'],
+            ['POST', '/candidate/feedback',      'CandidateDashboardController@feedback'],
+            ['GET',  '/candidate/logout',        'CandidateDashboardController@logout'],
+
+            
+            ['GET',  '/company',                 'CompanyDashboardController@index'], 
+            ['GET',  '/company/login',           'CompanyAuthController@showLogin'], 
+            ['GET',  '/company/dashboard',       'CompanyDashboardController@index'],
+            ['GET',  '/company/jobposting',      'CompanyDashboardController@showJobPostingForm'],
+            ['POST', '/company/jobposting',      'CompanyDashboardController@createJobPosting'],
+            ['GET',  '/company/postedjobs',      'CompanyDashboardController@showPostedJobs'],
+            ['GET',  '/company/application',     'CompanyDashboardController@showApplications'],
+            ['GET',  '/company/applications',    'CompanyDashboardController@showApplications'],
+            ['POST', '/company/applications',    'CompanyDashboardController@showApplications'],
+            ['GET',  '/company/shortlisted',     'CompanyDashboardController@showShortlisted'],
+            ['GET',  '/company/email',           'CompanyDashboardController@sendEmail'],
+            ['POST', '/company/email',           'CompanyDashboardController@sendEmail'],
+            ['GET',  '/company/feedback',        'CompanyDashboardController@feedback'],
+            ['POST', '/company/feedback',        'CompanyDashboardController@feedback'],
+            ['GET',  '/company/logout',          'CompanyDashboardController@logout'],
         ];
 
-        // try to match route
+      
         foreach ($routes as $r) {
             [$allowedMethod, $routePath, $handler] = $r;
             if ($method !== $allowedMethod) continue;
@@ -64,7 +97,7 @@ class App
             }
         }
 
-        // fallback — convention: /controller/method/arg1/arg2
+      
         $this->dispatchByConvention($path, $method);
     }
 
@@ -82,16 +115,16 @@ class App
             echo "Method {$action} not found on controller {$controllerName}";
             exit;
         }
-        // call the action; allow controller to handle outputs/redirects
+        
         $controller->{$action}();
     }
 
     private function dispatchByConvention(string $path, string $method): void
     {
-        // remove leading slash
+       
         $path = ltrim($path, '/');
         if ($path === '') {
-            // no path - try home
+            
             if (class_exists('HomeController')) {
                 $c = new HomeController($this->config);
                 echo $c->index();
@@ -120,7 +153,7 @@ class App
             return;
         }
 
-        // Call with params (if any)
+      
         echo call_user_func_array([$controller, $action], $params);
     }
 }

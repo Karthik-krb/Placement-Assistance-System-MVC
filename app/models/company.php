@@ -1,5 +1,4 @@
 <?php
-// app/Models/Company.php
 class Company {
     private $pdo;
 
@@ -8,7 +7,7 @@ class Company {
     }
 
     public function authenticate(string $email, string $password) {
-        $sql = "SELECT id, name, email, password FROM company WHERE email = :email LIMIT 1";
+        $sql = "SELECT company_id as id, company_name as name, company_email as email, company_password as password, CAST(company_logo AS CHAR) as logo FROM company WHERE company_email = :email LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':email' => $email]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
